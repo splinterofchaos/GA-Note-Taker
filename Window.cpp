@@ -27,9 +27,8 @@ void init_window( sf::Window& win, int w, int h, const char* const name )
 
 bool quit_requested( const sf::Event& e )
 {
-    bool ret;
-    ret = e.Type == sf::Event::Closed;
-    ret = ret || ( e.Type == sf::Event::KeyPressed && 
-                   e.Key.Code == sf::Key::Escape );
-    return ret;
+    bool closed = e.Type == sf::Event::Closed;
+    bool escape = e.Type == sf::Event::KeyPressed &&
+        e.Key.Code == sf::Key::Escape;
+    return closed || escape;
 }

@@ -10,10 +10,10 @@ int main()
     sf::Window window;
     init_window( window, 600, 600 );
 
-    while (window.IsOpened())
+    while( window.IsOpened() )
     {
         sf::Event Event;
-        while (window.GetEvent(Event))
+        while( window.GetEvent(Event) )
         {
             if( quit_requested(Event) )
                 window.Close();
