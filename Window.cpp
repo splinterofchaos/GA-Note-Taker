@@ -19,9 +19,9 @@ void gl_resize_view( GLsizei width, GLsizei height )
     glLoadIdentity();           
 }
 
-void init_window( sf::Window& win, int w, int h )
+void init_window( sf::Window& win, int w, int h, const char* const name )
 {
-    win.Create( sf::VideoMode(w, h, 32), "" );
+    win.Create( sf::VideoMode(w, h, 32), name );
     gl_resize_view( w, h );
 }
 

@@ -7,22 +7,20 @@
 
 int main()
 {
-    sf::Window App;
-    init_window( App, 600, 600 );
+    sf::Window window;
+    init_window( window, 600, 600 );
 
-    const sf::Input& Input = App.GetInput();
-
-    while (App.IsOpened())
+    while (window.IsOpened())
     {
         sf::Event Event;
-        while (App.GetEvent(Event))
+        while (window.GetEvent(Event))
         {
             if( quit_requested(Event) )
-                App.Close();
+                window.Close();
         }
 
         glClear( GL_COLOR_BUFFER_BIT );
-        App.Display();
+        window.Display();
     }
 
     return EXIT_SUCCESS;
