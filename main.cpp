@@ -25,7 +25,8 @@ char capture_key( const sf::Window& win, const sf::Event& e )
           case Divide   : key = '/'; break;
           case LBracket : key = '['; break;
           case RBracket : key = ']'; break;
-          case Quote    : key - '\''; break;
+          case Quote    : key = '\''; break;
+          case Return   : key = '\n'; break;
           default:
            if( std::isalpha(e.Key.Code) )
            {
