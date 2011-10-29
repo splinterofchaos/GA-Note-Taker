@@ -11,8 +11,6 @@
 
 int main()
 {
-    const sf::Color WHITE(255,255,255), GREY(100,100,100);
-
     const int WINDOW_W = 600;
     const int WINDOW_H = 600;
 
