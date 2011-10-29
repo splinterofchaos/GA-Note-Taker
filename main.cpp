@@ -7,6 +7,19 @@
 
 #include <SFML/Graphics.hpp> // For RendWin, Font.
 
+#include <cctype>
+char capture_key( const sf::Event& e )
+{
+    char key = 0;
+    if( e.Type == sf::Event::KeyPressed )
+    {
+        if( std::isalnum(e.Key.Code) )
+            key = e.Key.Code;
+    }
+
+    return key;
+}
+
 int main()
 {
     sf::RenderWindow window;
@@ -15,7 +28,7 @@ int main()
     sf::Font font;
     font.LoadFromFile( "/Library/Fonts/Arial Black.ttf" );
 
-    sf::String inputText( "TEST", font, 50 );
+    sf::String inputText( "", font, 50 );
     inputText.SetColor( sf::Color(255,255,255) ); 
     inputText.SetPosition( 50, 50 );
 
@@ -26,6 +39,12 @@ int main()
         {
             if( quit_requested(Event) )
                 window.Close();
+
+            if( char c = capture_key(Event) )
+            {
+                std::string txt = inputText.GetText();
+                inputText.SetText( txt + c );
+            }
         }
 
         glClear( GL_COLOR_BUFFER_BIT );
