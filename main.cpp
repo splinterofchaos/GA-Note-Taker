@@ -8,10 +8,10 @@
 #include <SFML/Graphics.hpp> // For RendWin, Font.
 
 #include <cctype>
-char capture_key( const sf::Window& win, const sf::event& e )
+char capture_key( const sf::Window& win, const sf::Event& e )
 {
     char key = 0;
-    if( e.Type == sf::event::KeyPressed )
+    if( e.Type == sf::Event::KeyPressed )
     {
         using namespace sf::Key;
 
@@ -58,8 +58,8 @@ int main()
 
     while( window.IsOpened() )
     {
-        sf::event event;
-        while( window.Getevent(event) )
+        sf::Event event;
+        while( window.GetEvent(event) )
         {
             if( quit_requested(event) )
                 window.Close();
