@@ -48,13 +48,16 @@ int main()
 {
     const sf::Color WHITE(255,255,255), GREY(100,100,100);
 
+    const int WINDOW_W = 600;
+    const int WINDOW_H = 600;
+
     sf::RenderWindow window;
-    init_window( window, 600, 600 );
+    init_window( window, WINDOW_W, WINDOW_H );
 
     sf::Font font;
     font.LoadFromFile( "/Library/Fonts/Arial Black.ttf" );
 
-    InputBox inputBox( 50, 50, window, font );
+    InputBox inputBox( 50, WINDOW_H - 50, window, font );
 
     while( window.IsOpened() )
     {
