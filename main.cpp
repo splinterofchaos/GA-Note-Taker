@@ -1,13 +1,10 @@
 
-////////////////////////////////////////////////////////////
-// Headers
-////////////////////////////////////////////////////////////
 #include "Window.h"
 #include "TextBox.h"
 
 #include <SFML/Window.hpp>
 
-#include <SFML/Graphics.hpp> // For RendWin, Font.
+#include <SFML/Graphics.hpp> // For Window, Font.
 
 int main()
 {
@@ -37,7 +34,5 @@ int main()
         inputBox.draw();
         window.Display();
     }
-
-    return EXIT_SUCCESS;
 }
 
