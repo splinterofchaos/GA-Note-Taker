@@ -44,6 +44,8 @@ char capture_key( const sf::Window& win, const sf::Event& e )
 
 int main()
 {
+    const sf::Color WHITE(255,255,255), GREY(100,100,100);
+
     sf::RenderWindow window;
     init_window( window, 600, 600 );
 
@@ -51,7 +53,7 @@ int main()
     font.LoadFromFile( "/Library/Fonts/Arial Black.ttf" );
 
     sf::String inputText( "", font, 50 );
-    inputText.SetColor( sf::Color(255,255,255) ); 
+    inputText.SetColor( WHITE ); 
     inputText.SetPosition( 50, 50 );
 
     while( window.IsOpened() )
@@ -67,9 +69,18 @@ int main()
                 std::string txt = inputText.GetText();
                 inputText.SetText( txt + c );
             }
+
         }
 
+        sf::Shape inputBox;
+        sf::Rect<float> boarders = inputText.GetRect();
+        inputBox.AddPoint( boarders.Left  - 10, boarders.Top    - 10, GREY );
+        inputBox.AddPoint( boarders.Right + 10, boarders.Top    - 10, GREY );
+        inputBox.AddPoint( boarders.Right + 10, boarders.Bottom + 10, GREY );
+        inputBox.AddPoint( boarders.Left  - 10, boarders.Bottom + 10, GREY );
+
         glClear( GL_COLOR_BUFFER_BIT );
+        window.Draw( inputBox );
         window.Draw( inputText );
         window.Display();
     }
