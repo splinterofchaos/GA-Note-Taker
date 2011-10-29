@@ -3,6 +3,8 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include "Window.h"
+#include "TextBox.h"
+
 #include <SFML/Window.hpp>
 
 #include <SFML/Graphics.hpp> // For RendWin, Font.
@@ -52,9 +54,7 @@ int main()
     sf::Font font;
     font.LoadFromFile( "/Library/Fonts/Arial Black.ttf" );
 
-    sf::String inputText( "", font, 50 );
-    inputText.SetColor( WHITE ); 
-    inputText.SetPosition( 50, 50 );
+    TextBox inputBox( 50, 50, font );
 
     while( window.IsOpened() )
     {
@@ -66,22 +66,16 @@ int main()
 
             if( char c = capture_key(window,event) )
             {
-                std::string txt = inputText.GetText();
-                inputText.SetText( txt + c );
+                inputBox.rawStr += c;
+                inputBox.update_text();
             }
 
         }
 
-        sf::Shape inputBox;
-        sf::Rect<float> boarders = inputText.GetRect();
-        inputBox.AddPoint( boarders.Left  - 10, boarders.Top    - 10, GREY );
-        inputBox.AddPoint( boarders.Right + 10, boarders.Top    - 10, GREY );
-        inputBox.AddPoint( boarders.Right + 10, boarders.Bottom + 10, GREY );
-        inputBox.AddPoint( boarders.Left  - 10, boarders.Bottom + 10, GREY );
+
 
         glClear( GL_COLOR_BUFFER_BIT );
-        window.Draw( inputBox );
-        window.Draw( inputText );
+        inputBox.draw( window );
         window.Display();
     }
 
