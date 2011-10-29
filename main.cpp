@@ -21,6 +21,11 @@ char capture_key( const sf::Window& win, const sf::Event& e )
           case Space    : key = ' '; break;
           case Comma    : key = ','; break;
           case SemiColon: key = ';'; break;
+          case Period   : key = '.'; break;
+          case Divide   : key = '/'; break;
+          case LBracket : key = '['; break;
+          case RBracket : key = ']'; break;
+          case Quote    : key - '\''; break;
           default:
            if( std::isalpha(e.Key.Code) )
            {
@@ -28,6 +33,8 @@ char capture_key( const sf::Window& win, const sf::Event& e )
                if( inp.IsKeyDown(LShift) || inp.IsKeyDown(RShift) )
                    key += 'A' - 'a';
            }
+           else if( std::isdigit(e.Key.Code) )
+               key = e.Key.Code;
         }
     }
 
