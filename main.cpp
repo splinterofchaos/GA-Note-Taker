@@ -9,41 +9,6 @@
 
 #include <SFML/Graphics.hpp> // For RendWin, Font.
 
-#include <cctype>
-char capture_key( const sf::Window& win, const sf::Event& e )
-{
-    char key = 0;
-    if( e.Type == sf::Event::KeyPressed )
-    {
-        using namespace sf::Key;
-
-        const sf::Input& inp = win.GetInput();
-        switch( e.Key.Code )
-        {
-          case Space    : key = ' '; break;
-          case Comma    : key = ','; break;
-          case SemiColon: key = ';'; break;
-          case Period   : key = '.'; break;
-          case Divide   : key = '/'; break;
-          case LBracket : key = '['; break;
-          case RBracket : key = ']'; break;
-          case Quote    : key = '\''; break;
-          case Return   : key = '\n'; break;
-          default:
-           if( std::isalpha(e.Key.Code) )
-           {
-               key = e.Key.Code;
-               if( inp.IsKeyDown(LShift) || inp.IsKeyDown(RShift) )
-                   key += 'A' - 'a';
-           }
-           else if( std::isdigit(e.Key.Code) )
-               key = e.Key.Code;
-        }
-    }
-
-    return key;
-}
-
 int main()
 {
     const sf::Color WHITE(255,255,255), GREY(100,100,100);
