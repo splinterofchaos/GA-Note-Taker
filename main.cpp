@@ -54,7 +54,7 @@ int main()
     sf::Font font;
     font.LoadFromFile( "/Library/Fonts/Arial Black.ttf" );
 
-    TextBox inputBox( 50, 50, font );
+    InputBox inputBox( 50, 50, window, font );
 
     while( window.IsOpened() )
     {
@@ -64,18 +64,11 @@ int main()
             if( quit_requested(event) )
                 window.Close();
 
-            if( char c = capture_key(window,event) )
-            {
-                inputBox.rawStr += c;
-                inputBox.update_text();
-            }
-
+            inputBox.capture_input( event );
         }
 
-
-
         glClear( GL_COLOR_BUFFER_BIT );
-        inputBox.draw( window );
+        inputBox.draw();
         window.Display();
     }
 
