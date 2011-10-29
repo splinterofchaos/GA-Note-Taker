@@ -13,8 +13,15 @@ char capture_key( const sf::Event& e )
     char key = 0;
     if( e.Type == sf::Event::KeyPressed )
     {
-        if( std::isalnum(e.Key.Code) )
-            key = e.Key.Code;
+        switch( e.Key.Code )
+        {
+          case sf::Key::Space    : key = ' '; break;
+          case sf::Key::Comma    : key = ','; break;
+          case sf::Key::SemiColon: key = ';'; break;
+          default:
+           if( std::isalnum(e.Key.Code) )
+               key = e.Key.Code;
+        }
     }
 
     return key;
