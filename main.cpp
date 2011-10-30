@@ -7,6 +7,31 @@
 
 #include <vector>
 
+typedef std::vector< TextBox > MessageList;
+
+void add_message( MessageList* list, const InputBox& input )
+{
+    if( ! list )
+        return;
+
+    int x, y; // Position of the new message.
+
+    if( ! list->size() )
+    {   x = 50;
+        y = 50;
+    } else 
+    {   const sf::Vector2<int>& vec = list->back().pos;
+        x = vec.x;
+        y = vec,y;
+    }
+
+    TextBox newMessage = input;
+    newMessage.pos.x = x;
+    newMessage.pos.y = y;
+
+    list->push_back( newMessage );
+}
+
 int main()
 {
     const int WINDOW_W = 600;

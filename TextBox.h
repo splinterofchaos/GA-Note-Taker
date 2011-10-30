@@ -23,6 +23,8 @@ struct TextBox
 
 struct InputBox : TextBox
 {
+    bool pushMessage;
+
     InputBox( int x, int y, sf::RenderWindow&, sf::Font& );
 
     void capture_input( const sf::Event& e );
