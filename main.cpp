@@ -22,7 +22,7 @@ void add_message( MessageList* list, const InputBox& input )
     } else 
     {   const sf::Vector2<int>& vec = list->back().pos;
         x = vec.x;
-        y = vec,y;
+        y = vec.y;
     }
 
     TextBox newMessage = input;

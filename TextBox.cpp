@@ -2,7 +2,7 @@
 #include "TextBox.h"
 
 TextBox::TextBox( int x, int y, sf::RenderWindow& win, sf::Font& font )
-    : gfxStr( "", font, 10 ), win( win )
+    : gfxStr( "", font, 10 ), win( win ) 
 {
     gfxStr.SetColor( sf::Color(255,255,255) );
     gfxStr.SetPosition( x, y );
@@ -42,7 +42,7 @@ void TextBox::update_text()
 }
 
 InputBox::InputBox( int x, int y, sf::RenderWindow& w, sf::Font& f )
-    : TextBox( x, y, w, f )
+    : TextBox( x, y, w, f ), pushMessage(false)
 {
 }
 
@@ -64,7 +64,7 @@ void InputBox::capture_input( const sf::Event& e )
           case LBracket : key = '['; break;
           case RBracket : key = ']'; break;
           case Quote    : key = '\''; break;
-          case Return   : key = '\n'; break;
+          case Return   : pushMessage = true; break;
           default:
            if( std::isalpha(e.Key.Code) )
            {
@@ -79,4 +79,16 @@ void InputBox::capture_input( const sf::Event& e )
 
     rawStr += key;
     update_text();
+}
+
+bool InputBox::push_message_if_flagged()
+{
+    bool ret = pushMessage;
+
+    if( pushMessage )
+    {  text( "" ); 
+        pushMessage = false;
+    }
+
+    return ret;
 }
