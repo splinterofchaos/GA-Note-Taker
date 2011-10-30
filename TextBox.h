@@ -9,9 +9,9 @@ struct TextBox
     sf::String  gfxStr;
     std::string rawStr;
 
-    sf::RenderWindow& win;
+    sf::RenderWindow* win;
     
-    TextBox( int x, int y, sf::RenderWindow&, sf::Font& );
+    TextBox( int x, int y, sf::RenderWindow*, sf::Font& );
     
     void        text( const std::string& str );
     std::string text();
@@ -25,7 +25,7 @@ struct InputBox : TextBox
 {
     bool pushMessage;
 
-    InputBox( int x, int y, sf::RenderWindow&, sf::Font& );
+    InputBox( int x, int y, sf::RenderWindow*, sf::Font& );
 
     bool capture_input( const sf::Event& e );
     bool flush_message();

@@ -1,7 +1,7 @@
 
 #include "TextBox.h"
 
-TextBox::TextBox( int x, int y, sf::RenderWindow& win, sf::Font& font )
+TextBox::TextBox( int x, int y, sf::RenderWindow* win, sf::Font& font )
     : gfxStr( "", font, 10 ), win( win ) 
 {
     gfxStr.SetColor( sf::Color(255,255,255) );
@@ -32,8 +32,8 @@ void TextBox::draw()
     background.AddPoint( boarders.Right + 10, boarders.Bottom + 10, c );
     background.AddPoint( boarders.Left  - 10, boarders.Bottom + 10, c );
 
-    win.Draw( background );
-    win.Draw( gfxStr );
+    win->Draw( background );
+    win->Draw( gfxStr );
 }
 
 void TextBox::update_text()
@@ -41,7 +41,7 @@ void TextBox::update_text()
     gfxStr.SetText( rawStr );
 }
 
-InputBox::InputBox( int x, int y, sf::RenderWindow& w, sf::Font& f )
+InputBox::InputBox( int x, int y, sf::RenderWindow* w, sf::Font& f )
     : TextBox( x, y, w, f ), pushMessage(false)
 {
 }
@@ -53,7 +53,7 @@ bool InputBox::capture_input( const sf::Event& e )
     {
         using namespace sf::Key;
 
-        const sf::Input& inp = win.GetInput();
+        const sf::Input& inp = win->GetInput();
         switch( e.Key.Code )
         {
           case Space    : key = ' '; break;

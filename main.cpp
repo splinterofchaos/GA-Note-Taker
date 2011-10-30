@@ -43,7 +43,7 @@ int main()
     sf::Font font;
     font.LoadFromFile( "/Library/Fonts/Arial Black.ttf" );
 
-    InputBox inputBox( 50, WINDOW_H - 50, window, font );
+    InputBox inputBox( 50, WINDOW_H - 50, &window, font );
 
     std::vector< TextBox > messageList;
 
@@ -57,7 +57,7 @@ int main()
 
             if( inputBox.capture_input(event) )
                 if( inputBox.pushMessage )
-                {   add_message( &messageList, inputBox )
+                {   add_message( &messageList, inputBox );
                     inputBox.flush_message();
                 }
 
