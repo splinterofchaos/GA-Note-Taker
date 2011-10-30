@@ -3,8 +3,9 @@
 #include "TextBox.h"
 
 #include <SFML/Window.hpp>
-
 #include <SFML/Graphics.hpp> // For Window, Font.
+
+#include <vector>
 
 int main()
 {
@@ -18,6 +19,8 @@ int main()
     font.LoadFromFile( "/Library/Fonts/Arial Black.ttf" );
 
     InputBox inputBox( 50, WINDOW_H - 50, window, font );
+
+    std::vector< TextBox > messageList;
 
     while( window.IsOpened() )
     {
