@@ -55,11 +55,21 @@ int main()
             if( quit_requested(event) )
                 window.Close();
 
-            inputBox.capture_input( event );
+            if( inputBox.capture_input(event) )
+                if( inputBox.pushMessage )
+                {   add_message( &messageList, inputBox )
+                    inputBox.flush_message();
+                }
+
         }
 
         glClear( GL_COLOR_BUFFER_BIT );
+
+        for( int i=0; i < messageList.size(); i++ )
+            messageList[i].draw();
+
         inputBox.draw();
+
         window.Display();
     }
 }

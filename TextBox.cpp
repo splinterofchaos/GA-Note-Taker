@@ -46,7 +46,7 @@ InputBox::InputBox( int x, int y, sf::RenderWindow& w, sf::Font& f )
 {
 }
 
-void InputBox::capture_input( const sf::Event& e )
+bool InputBox::capture_input( const sf::Event& e )
 {
     char key = 0;
     if( e.Type == sf::Event::KeyPressed )
@@ -79,9 +79,11 @@ void InputBox::capture_input( const sf::Event& e )
 
     rawStr += key;
     update_text();
+
+    return key;
 }
 
-bool InputBox::push_message_if_flagged()
+bool InputBox::flush_message()
 {
     bool ret = pushMessage;
 
