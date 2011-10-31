@@ -39,7 +39,7 @@ int main()
             inputBox.capture_input( event );
         }
 
-        glClear( GL_COLOR_BUFFER_BIT );
+        window.Clear();
         inputBox.draw();
         window.Display();
     }
