@@ -2,7 +2,11 @@
 CPP = g++
 out = noty
 
-LDFLAGS = -framework SFML -framework sfml-audio -framework sfml-graphics -framework sfml-network -framework sfml-system -framework sfml-window -framework sndfile -framework OpenGL
+ifeq "${shell uname}" "Darwin"
+	LDFLAGS = -framework SFML -framework sfml-audio -framework sfml-graphics -framework sfml-network -framework sfml-system -framework sfml-window -framework sndfile -framework OpenGL
+else
+	LDFLAGS = -lGL -lopenal -lsfml-audio -lsfml-graphics -lsfml-network -lsfml-system -lsfml-window
+endif
 
 obj = .Window.o .TextBox.o
 
