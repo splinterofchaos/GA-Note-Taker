@@ -6,19 +6,16 @@ TextBox::TextBox( int x, int y, sf::RenderWindow& win, sf::Font& font )
 {
     gfxStr.SetColor( sf::Color(255,255,255) );
     gfxStr.SetPosition( x, y );
-
-    update_text();
 }
 
 void TextBox::text( const std::string& str )
 {
-    rawStr = str;
-    update_text();
+    gfxStr.SetText( str );
 }
 
 std::string TextBox::text()
 {
-    return rawStr;
+    return gfxStr.GetText();
 }
 
 void TextBox::draw()
@@ -77,6 +74,7 @@ void InputBox::capture_input( const sf::Event& e )
         }
     }
 
-    rawStr += key;
-    update_text();
+    std::string str = text();
+    str += key;
+    text( str );
 }
