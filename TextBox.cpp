@@ -2,7 +2,7 @@
 #include "TextBox.h"
 
 TextBox::TextBox( int x, int y, sf::RenderWindow& win, sf::Font& font )
-    : gfxStr( "", font, 10 ), win( win )
+    : gfxStr( "something", font, 10 ), win( win )
 {
     gfxStr.SetColor( sf::Color(255,255,255) );
     gfxStr.SetPosition( x, y );

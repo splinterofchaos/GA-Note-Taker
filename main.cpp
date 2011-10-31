@@ -9,6 +9,12 @@
 
 #include <SFML/Graphics.hpp> // For RendWin, Font.
 
+#if defined(__APPLE__)
+#   define FONT "/Library/Fonts/Arial Black.ttf"
+#else
+#   define FONT "/usr/share/fonts/dejavu/DejaVuSans-Bold.ttf"
+#endif
+
 int main()
 {
     const int WINDOW_W = 600;
@@ -18,7 +24,7 @@ int main()
     init_window( window, WINDOW_W, WINDOW_H );
 
     sf::Font font;
-    font.LoadFromFile( "/Library/Fonts/Arial Black.ttf" );
+    font.LoadFromFile( FONT );
 
     InputBox inputBox( 50, WINDOW_H - 50, window, font );
 
